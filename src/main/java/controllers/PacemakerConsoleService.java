@@ -15,7 +15,7 @@ import parsers.Parser;
 
 public class PacemakerConsoleService {
 
-  private PacemakerAPI paceApi = new PacemakerAPI("https://warm-escarpment-62674.herokuapp.com/");
+  private PacemakerAPI paceApi = new PacemakerAPI("http://localhost:7000/");
   //https://warm-escarpment-62674.herokuapp.com/
   //http://localhost:7000
   private Parser console = new AsciiTableParser();
@@ -204,6 +204,10 @@ public class PacemakerConsoleService {
   public void messageFriend(@Param(name = "email") String friendEmail,
       @Param(name = "message") String message) {
     if(!isUserLoggedIn()) {return;}
+    if (friendEmail.equalsIgnoreCase(loggedInUser.getEmail())) {
+      System.out.println("Cannot Send message to yourself");
+      return;
+    }
     paceApi.messageAFriend(loggedInUser.getId(), friendEmail, message);
   }
 

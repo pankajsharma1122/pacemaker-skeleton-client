@@ -130,7 +130,7 @@ public class PacemakerAPI {
       Response<User> response = call.execute();
       returnedUser = response.body();    
     } catch (Exception e) {
-      System.out.println(e.getMessage());
+      System.out.println("HELLO" + e.getMessage());
     }
     return returnedUser;
   }
