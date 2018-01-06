@@ -16,9 +16,9 @@ import parsers.Parser;
 public class PacemakerConsoleService {
 
   private PacemakerAPI paceApi = new PacemakerAPI("http://localhost:7000/");
-  //https://warm-escarpment-62674.herokuapp.com/
+  //https://warm-escarpment-62674.herokuapp.com/  --Java API
   //http://localhost:7000
-  //https://whispering-scrubland-77173.herokuapp.com/
+  //https://whispering-scrubland-77173.herokuapp.com/  ---KOTLIN service
   private Parser console = new AsciiTableParser();
   private User loggedInUser = null;
 
