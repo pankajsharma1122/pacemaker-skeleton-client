@@ -154,7 +154,7 @@ public class PacemakerAPI {
        Response<Activity> response = call.execute();
        activity = response.body();
      } catch (Exception e) {
-       e.printStackTrace();
+       System.out.println(e.getMessage());
      }
      return activity;
    }
