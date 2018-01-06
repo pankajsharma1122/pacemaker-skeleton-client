@@ -17,7 +17,9 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 
+
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.doThrow;
 
 import models.User;
 
@@ -27,9 +29,7 @@ public class UserTest {
   PacemakerAPI pacemaker = new PacemakerAPI("http://localhost:7000/");
   
   
-  @InjectMocks
-  PacemakerInterface pacemakerInterface = Mockito.mock(PacemakerInterface.class);
-
+ 
   //http://localhost:7000
   //https://warm-escarpment-62674.herokuapp.com/
   User homer = new User("homer", "simpson", "homer@simpson.com", "secret");
@@ -52,14 +52,7 @@ public class UserTest {
     assertEquals(user2.toString(), user.toString());
   }
   
-//  @Test
-//  public void testCreateUserException() {
-//   when(pacemakerInterface.registerUser(
-//       new User(homer.firstname, homer.lastname, homer.email, homer.password))).thenThrow(new Exception("Dummy Exception"));
-//   User user = pacemaker.createUser(homer.firstname, homer.lastname, homer.email, homer.password);
-//  }
-
-  @Test
+    @Test
   public void testCreateUsers() {
     users.forEach(
         user -> pacemaker.createUser(user.firstname, user.lastname, user.email, user.password));
@@ -109,7 +102,8 @@ public class UserTest {
     User user_marge = pacemaker.createUser(marge.firstname, marge.lastname, marge.email, marge.password);
      pacemaker.followAFriend(user_homer.email, user_marge.email);
      Collection<User> friendList = pacemaker.listAllFriends(user_homer.getId());
-     Collection<User> friendAsMargeList = friendList.stream().filter(user -> user.email.equalsIgnoreCase(user_marge.getEmail())).collect(Collectors.toList());
+     Collection<User> friendAsMargeList = friendList.stream().filter(
+         user -> user.email.equalsIgnoreCase(user_marge.getEmail())).collect(Collectors.toList());
      assertEquals(friendAsMargeList.size(), 1);
   }
   
@@ -123,7 +117,8 @@ public class UserTest {
     assertEquals(friendAsMargeList.size(), 1);
     pacemaker.unfollowAFriend(user_homer.email, user_marge.email);
     friendList = pacemaker.listAllFriends(user_homer.getId());
-    friendAsMargeList = friendList.stream().filter(user -> user.email.equalsIgnoreCase(user_marge.getEmail())).collect(Collectors.toList());
+    friendAsMargeList = friendList.stream().filter(
+        user -> user.email.equalsIgnoreCase(user_marge.getEmail())).collect(Collectors.toList());
     assertEquals(friendAsMargeList.size(), 0);
   }
   
@@ -162,5 +157,7 @@ public class UserTest {
     assertTrue(messages_bart.containsAll(messages_maggie));
     assertTrue(messages_bart.containsAll(messages_marge));
   }
+  
+ 
   
 }

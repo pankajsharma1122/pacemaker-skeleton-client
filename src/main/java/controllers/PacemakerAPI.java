@@ -88,7 +88,7 @@ interface PacemakerInterface
     @POST("/users/{id}/friends/message")
     Call<User> messageAllFriend(@Path("id") String userId, @Body String message);
     @GET("/users/{id}/messages")
-    Call<List<String>> listAllMessages(@Path("id") String id);
+  Call<List<String>> listAllMessages(@Path("id") String id);
 }
 
 public class PacemakerAPI {

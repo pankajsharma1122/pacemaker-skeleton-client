@@ -47,7 +47,7 @@
    		<version>110413</version>
 	</dependency>
     <dependency>
-         <groupId>java-ascii-table</groupId>
+         <groupId>com.bethecoder</groupId>
          <artifactId>java-ascii-table</artifactId>
          <version>1.0</version>
     </dependency>

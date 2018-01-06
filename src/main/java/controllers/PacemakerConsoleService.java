@@ -18,6 +18,7 @@ public class PacemakerConsoleService {
   private PacemakerAPI paceApi = new PacemakerAPI("http://localhost:7000/");
   //https://warm-escarpment-62674.herokuapp.com/
   //http://localhost:7000
+  //https://whispering-scrubland-77173.herokuapp.com/
   private Parser console = new AsciiTableParser();
   private User loggedInUser = null;
 
@@ -25,6 +26,10 @@ public class PacemakerConsoleService {
   }
 
   // Starter Commands
+  public void setPaceApi(PacemakerAPI paceApi)
+  {
+    this.paceApi = paceApi;
+  }
 
   @Command(description = "Register: Create an account for a new user")
   public void register(@Param(name = "first name") String firstName,
@@ -33,6 +38,8 @@ public class PacemakerConsoleService {
     
     console.renderUser(paceApi.createUser(firstName, lastName, email, password));
   }
+  
+
   @Command(description = "Register: Create an account for a new user")
   public void deleteUsers() {
     if(!isUserLoggedIn()) {return;}
